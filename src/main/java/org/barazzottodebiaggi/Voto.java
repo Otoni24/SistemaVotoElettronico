@@ -11,7 +11,9 @@ public abstract class Voto {
 	public void voting(Utente u) {
 		//dopo aver controllato se l'utente abbia già votato o meno in precedenza, il metodo voting fornisce o nega la possiblità di voto al suddetto utente
 	}
-	
-								//metodo per crittografare voto?
+	public void addToUrna(Urna u) {
+		//aggiuge il voto dell'elettore all'Urna(lista di voti)	
+	}
+								
 
 }
