@@ -5,67 +5,93 @@ public class Elettore extends Utente {
 	public Elettore() {
 		// TODO Auto-generated constructor stub
 	}
-	//attributi
-	//nome e cognome
+	//attributi e rispettivi metodi set e get
+	
+	//nome
 	public String nome;
 	public void set_Nome (String nome) {
 		this.nome=nome;
 	}
+	public String get_Nome() {
+		return this.nome;
+	}
+	//cognome
 	public String cognome;
 	public void set_Cognome (String cognome) {
 		this.cognome=cognome;
+	}
+	public String get_Cognome() {
+		return this.cognome;
 	}
 	//data di nascita
 	public int giorno_nascita;
 	public void set_birthday (int giorno_nascita) {
 		this.giorno_nascita=giorno_nascita;
 	}
+	public int get_birthday () {
+		return this.giorno_nascita;
+	}
 	public int mese_nascita;
 	public void set_birthmonth (int mese_nascita) {
 		this.mese_nascita=mese_nascita;
 	}
+	public int get_birthmonth () {
+		return this.mese_nascita;
+	}
 	public int anno_nascita;
 	public void set_birthyear (int anno_nascita) {
 		this.anno_nascita=anno_nascita;
+	}
+	public int get_birthyear () {
+		return this.anno_nascita;
 	}
 	//sesso
 	public boolean sesso;
 	public void set_sesso (boolean sesso) {
 		this.sesso=sesso;
 	}
+	public boolean return get_sesso() {
+		return this.sesso;
+	}
 	//luogo di nascita
 	public String luogo_nascita;
 	public void set_birthplace (String luogo_nascita) {
 		this.luogo_nascita=luogo_nascita;
+	}
+	public String get_birthplace() {
+		return this.luogo_nascita;
 	}
 	//nazione di nascita
 	public String nazione_nascita;
 	public void set_birthstate (String nazione_nascita) {
 		this.nazione_nascita=nazione_nascita;
 	}
+	public String get_birthstate () {
+		return this.nazione_nascita;
+	}
 	//codice fiscale
-	public char[] codice_fiscale= new char[16];
-	public void codice_fiscale(char[] codice_fiscale) {
-		String codFis = "";
-		String cognome = ;
-		String nome = ;
-		String annoNascita = //convertire int a stringa;
-		String meseNascita=; //convertire int a stringa
-		String giornoNascita=; //convertire int a stringa
-		String comuneNascita = );
+	public String codice_fiscale;
+	public void codice_fiscale() {
+		String codice_fiscale1 = "";
+		String cognome = this.cognome;
+		String nome = this.nome;
+		String annoNascita = String.valueOf(this.anno_nascita); //convertire int a stringa;
+		String meseNascita=String.valueOf(this.mese_nascita);; //convertire int a stringa
+		String giornoNascita=String.valueOf(this.giorno_nascita);; //convertire int a stringa
+		String luogoNascita = this.luogo_nascita;
 		//calcolo prime 3 lettere
 		int cont = 0;
 		//caso cognome minore di 3 lettere
 		if (cognome.length()<3){
-			codFis+= cognome;
-		while (codFis.length()<3) codFis+= "X";
+			codice_fiscale1+= cognome;
+		while (codice_fiscale1.length()<3) codice_fiscale1+= "X";
 			cont=3;
 		}
 		//caso normale
 		for (int i=0;i<cognome.length();i++) {
 			if (cont==3) break;
 			if (cognome.charAt(i)!='A' && cognome.charAt(i)!='E' && cognome.charAt(i)!='I' && cognome.charAt(i)!='O' && cognome.charAt(i)!='U') {
-				codFis+= Character.toString(cognome.charAt(i));
+				codice_fiscale1+= Character.toString(cognome.charAt(i));
 				cont++;
 			}
 		}
@@ -74,7 +100,7 @@ public class Elettore extends Utente {
 			for (int i=0;i<cognome.length();i++) {
 				if (cont==3) break;
 				if (cognome.charAt(i)=='A' || cognome.charAt(i)=='E' || cognome.charAt(i)=='I' || cognome.charAt(i)=='O' || cognome.charAt(i)=='U') {
-					codFis+= Character.toString(cognome.charAt(i));
+					codice_fiscale1+= Character.toString(cognome.charAt(i));
 					cont++;
 				}
 			}
@@ -83,15 +109,15 @@ public class Elettore extends Utente {
 		cont = 0;
 		//caso nome minore di 3 lettere
 		if (nome.length()<3){
-			codFis+= nome;
-			while (codFis.length()<6) codFis+= "X";
+			codice_fiscale1+= nome;
+			while (codice_fiscale1.length()<6) codice_fiscale1+= "X";
 				cont=3;
 		}
 		//caso normale
 		for (int i=0;i<nome.length();i++) {
 			if (cont==3) break;
 			if (nome.charAt(i)!='A' && nome.charAt(i)!='E' && nome.charAt(i)!='I' && nome.charAt(i)!='O' && nome.charAt(i)!='U') {
-				codFis+= Character.toString(nome.charAt(i));
+				codice_fiscale1+= Character.toString(nome.charAt(i));
 				cont++;
 			}
 		}
@@ -100,47 +126,47 @@ public class Elettore extends Utente {
 			for (int i=0;i<nome.length();i++) {
 				if (cont==3) break;
 				if (nome.charAt(i)=='A' || nome.charAt(i)=='E' || nome.charAt(i)=='I' || nome.charAt(i)=='O' || nome.charAt(i)=='U') {
-				codFis+= Character.toString(nome.charAt(i));
+				codice_fiscale1+= Character.toString(nome.charAt(i));
 				cont++;
 				}
 			}
 		}
 		//anno di nascita
 		String anno= String.valueOf(annoNascita);
-		codFis+=anno.substring(2,4);
+		codice_fiscale1+=anno.substring(2,4);
 		//mese di nascita
 		int mese=0;
 		if (meseNascita.charAt(3)== '0') mese = Integer.parseInt(meseNascita.substring(4,5));
 		else mese = Integer.parseInt(meseNascita.substring(3,5));
 		switch (mese) {
-		case 1: {codFis+="A";break;}
-		case 2: {codFis+="B";break;}
-		case 3: {codFis+="C";break;}
-		case 4: {codFis+="D";break;}
-		case 5: {codFis+="E";break;}
-		case 6: {codFis+="H";break;}
-		case 7: {codFis+="L";break;}
-		case 8: {codFis+="M";break;}
-		case 9: {codFis+="P";break;}
-		case 10: {codFis+="R";break;}
-		case 11: {codFis+="S";break;}
-		case 12: {codFis+="T";break;}
+		case 1: {codice_fiscale1+="A";break;}
+		case 2: {codice_fiscale1+="B";break;}
+		case 3: {codice_fiscale1+="C";break;}
+		case 4: {codice_fiscale1+="D";break;}
+		case 5: {codice_fiscale1+="E";break;}
+		case 6: {codice_fiscale1+="H";break;}
+		case 7: {codice_fiscale1+="L";break;}
+		case 8: {codice_fiscale1+="M";break;}
+		case 9: {codice_fiscale1+="P";break;}
+		case 10: {codice_fiscale1+="R";break;}
+		case 11: {codice_fiscale1+="S";break;}
+		case 12: {codice_fiscale1+="T";break;}
 		}
 		//giorno di nascita
 		int giorno=0;
 		if (giornoNascita.charAt(0)== '0') giorno = Integer.parseInt(giornoNascita.substring(0,1));
 		else giorno = Integer.parseInt(giornoNascita.substring(0,2));
-		if (sesso) codFis+= giorno;
+		if (sesso) codice_fiscale1+= giorno;
 		else {
 			giorno+=40;
-			codFis+=Integer.toString(giorno);
+			codice_fiscale1+=Integer.toString(giorno);
 		}
 		//comune
 		                    //??? come faccio a scegliere numero e lettere del comune ???
 		//carattere di controllo
 		int sommaPari=0;
 		for (int i=1;i<=13;i+=2) {
-		switch (codFis.charAt(i)) {
+		switch (codice_fiscale1.charAt(i)) {
 			case '0': {sommaPari+=0;break;}
 			case '1': {sommaPari+=1;break;}
 			case '2': {sommaPari+=2;break;}
@@ -181,7 +207,7 @@ public class Elettore extends Utente {
 		}
 		int sommaDispari=0;
 		for (int i=0;i<=14;i+=2) {
-		switch (codFis.charAt(i)) {
+		switch (codice_fiscale1.charAt(i)) {
 			case '0': {sommaDispari+=1;break;}
 			case '1': {sommaDispari+=0;break;}
 			case '2': {sommaDispari+=5;break;}
@@ -250,10 +276,12 @@ public class Elettore extends Utente {
 			case 24:{carattereControllo="Y";break;}
 			case 25:{carattereControllo="Z";break;}
 		}
-		codFis+=carattereControllo;
-		this.codice_fiscale=codice_fiscale;
+		codice_fiscale1+=carattereControllo;
+		this.codice_fiscale=codice_fiscale1;
 	}
-		
+	public String get_codice_fiscale() {	
+		return this.codice_fiscale;
+	}
 
 	//voto
 	public boolean voto;
