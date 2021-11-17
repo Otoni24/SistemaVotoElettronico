@@ -1,14 +1,27 @@
 package org.barazzottodebiaggi;
 
+import java.util.Date;
+
 public class Elettore extends Utente {
 
 	public Elettore() {
 		// TODO Auto-generated constructor stub
 	}
-	//attributi e metodi
 	
+	
+	//attributi
+	public /*@ non_null @*/ String nome;
+	public /*@ non_null @*/ String cognome;
+	public Date data_nascita;
+	//@ invariant sesso == 'M' || sesso =='F';
+	public char sesso;
+	public String luogo_nascita;
+	public String nazione_nascita;
+	public char[] codice_fiscale;
+	public boolean voto;
+	
+	//metodi
 	//nome
-	public String nome;
 	public void set_Nome (String nome) {
 		this.nome=nome;
 	}
@@ -16,7 +29,6 @@ public class Elettore extends Utente {
 		return this.nome;
 	}
 	//cognome
-	public String cognome;
 	public void set_Cognome (String cognome) {
 		this.cognome=cognome;
 	}
@@ -24,37 +36,21 @@ public class Elettore extends Utente {
 		return this.cognome;
 	}
 	//data di nascita
-	public int giorno_nascita;
-	public void set_birthday (int giorno_nascita) {
-		this.giorno_nascita=giorno_nascita;
+	public void set_data_nascita(Date data_nascita) throws ParseException {
+		this.data_nascita = data_nascita;
 	}
-	public int get_birthday () {
-		return this.giorno_nascita;
-	}
-	public int mese_nascita;
-	public void set_birthmonth (int mese_nascita) {
-		this.mese_nascita=mese_nascita;
-	}
-	public int get_birthmonth () {
-		return this.mese_nascita;
-	}
-	public int anno_nascita;
-	public void set_birthyear (int anno_nascita) {
-		this.anno_nascita=anno_nascita;
-	}
-	public int get_birthyear () {
-		return this.anno_nascita;
+	//@ invariant Date.after(this.data_nascita) == false;
+	public Date get_data_nascita() {
+		return this.data_nascita;	
 	}
 	//sesso
-	public boolean sesso;
-	public void set_sesso (boolean sesso) {
+	public void set_sesso (char sesso) {
 		this.sesso=sesso;
 	}
-	public boolean get_sesso() {
+	public char get_sesso() {
 		return this.sesso;
 	}
 	//luogo di nascita
-	public String luogo_nascita;
 	public void set_birthplace (String luogo_nascita) {
 		this.luogo_nascita=luogo_nascita;
 	}
@@ -62,15 +58,14 @@ public class Elettore extends Utente {
 		return this.luogo_nascita;
 	}
 	//nazione di nascita
-	public String nazione_nascita;
 	public void set_birthstate (String nazione_nascita) {
 		this.nazione_nascita=nazione_nascita;
 	}
+	//@ invariant nazione_nascita=="Italia"; requires luogo_nascita != null;
 	public String get_birthstate () {
 		return this.nazione_nascita;
 	}
 	//codice fiscale
-	public char[] codice_fiscale;
 	public void set_codice_fiscale(char[] codice_fiscale) {
 		this.codice_fiscale = codice_fiscale;
 	}
@@ -79,14 +74,13 @@ public class Elettore extends Utente {
 	}
 
 	//voto
-	public boolean voto;
 	//metodo booleano che permette di controllare se un Elettore abbia già votato per l'evento
-	public boolean esprimi_voto (boolean voto) {
+	public /*@ pure @*/ boolean esprimi_voto (boolean voto) {
 		if(voto) return true;
 		else {
 			return false;
 		}
 	}
-	
+	//@ ensures esprimi_voto(voto) == voto;
 
 }
