@@ -65,7 +65,8 @@ public class RegistrationController {
     public boolean validateSignUp() {
         BaseUserDao dao = new BaseUserDao();
         if (dao.retrievePassword(regUsernameTextField.getText()).equals("")) {
-            dao.createUser(regUsernameTextField.getText(), regPasswordTextField.getText());
+            String pwGiven = (PwHashing.hashing(regPasswordTextField.getText(), null));
+            dao.createUser(regUsernameTextField.getText(), pwGiven);
             confirmSignUp();
             return true;
         } else {

@@ -58,18 +58,20 @@ public class HelloController {
 
     public boolean validateLogin() {
         BaseUserDao dao = new BaseUserDao();
-        String checkPassword = dao.retrievePassword(usernameTextField.getText());
-        if(passwordPasswordField.getText().equals(checkPassword)) {
+        String pwTrue = dao.retrievePassword(usernameTextField.getText());
+        String salt = pwTrue.substring(pwTrue.length()-32);
+        String pwGiven = (PwHashing.hashing(passwordPasswordField.getText(), salt));
+        if (pwTrue.equals(pwGiven)) {
             confirmLogin();
             return true;
         } else {
             return false;
         }
+
     }
     public void confirmLogin() {
         try {
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.close();
+
             Parent newRoot = FXMLLoader.load(getClass().getResource("loginConSuccesso.fxml"));
             Stage lStage = new Stage();
             lStage.initStyle(StageStyle.UNDECORATED);

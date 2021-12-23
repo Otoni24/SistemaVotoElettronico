@@ -41,7 +41,7 @@ public class AdminLoginController {
     }
 
     public boolean validateLogin() {
-        BaseUserDao dao = new BaseUserDao();
+        ModUserDao dao = new ModUserDao();
         //change retrieve password
         String checkPassword = dao.retrievePassword(adUsernameTextField.getText());
         if(adPasswordTextField.getText().equals(checkPassword)) {
